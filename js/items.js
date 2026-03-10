@@ -147,16 +147,15 @@ fetch('products.json')
         // ✏️ FIX: event listener هنا جوه الـ fetch عشان data متاحة
         updateCart()
 
-        document.addEventListener("click", function(event) {
+        document.addEventListener("click", function (event) {
             const button = event.target.closest(".btn_add_cart")
             if (!button) return
 
-            const productId = Number(button.dataset.id)
-            if (!Number.isFinite(productId)) return
+            const productId = Number(button.dataset.id)   // هنا التعديل
 
             const selectedProduct = data.find(product => product.id === productId)
 
-            if (!selectedProduct) return // ✏️ FIX: لو مش موجود متكملش
+            if (!selectedProduct) return
 
             addToCart(selectedProduct)
 
