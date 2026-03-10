@@ -11,35 +11,35 @@ function open_clise_cart() {
 }
 
 fetch('products.json')
-.then(response => response.json())
-.then(data => {
+    .then(response => response.json())
+    .then(data => {
 
-    updateCart() // 
+        updateCart() // 
 
-    document.addEventListener("click", function(event){
+        document.addEventListener("click", function (event) {
 
-        const button = event.target.closest(".btn_add_cart")
+            const button = event.target.closest(".btn_add_cart")
 
-        if(!button) return
+            if (!button) return
 
-        const productId = button.dataset.id
+            const productId = button.dataset.id
 
-        const selcetedProduct = data.find(product => product.id == productId)
+            const selcetedProduct = data.find(product => product.id == productId)
 
-        if(!selcetedProduct) return // 
+            if (!selcetedProduct) return // 
 
-        addToCart(selcetedProduct)
+            addToCart(selcetedProduct)
 
-        const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
+            const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
 
-        allMathingButtons.forEach(btn => {
-            btn.classList.add("active")
-            btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in Cart`
+            allMathingButtons.forEach(btn => {
+                btn.classList.add("active")
+                btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in Cart`
+            })
+
         })
 
     })
-
-})
 
 function addToCart(product) {
 
@@ -47,9 +47,9 @@ function addToCart(product) {
 
     const existingProduct = cart.find(item => item.id == product.id)
 
-    if(existingProduct){
+    if (existingProduct) {
         existingProduct.quantity += 1
-    }else{
+    } else {
         cart.push({ ...product, quantity: 1 })
     }
 
@@ -65,7 +65,7 @@ function updateCart() {
 
     cartItemsContainer.innerHTML = ""
 
-    cart.forEach((item , index) => {
+    cart.forEach((item, index) => {
 
         cartItemsContainer.innerHTML += `
         <div class="item_cart">
@@ -86,8 +86,8 @@ function updateCart() {
 
 
     const delteButtons = document.querySelectorAll('.delete_item')
-    delteButtons.forEach(button =>{
-        button.addEventListener('click' , (event) => {
+    delteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
             const itemIndex = event.target.closest('button').getAttribute('data-inex')
             removeFromCart(itemIndex)
 
@@ -97,37 +97,37 @@ function updateCart() {
     syncButtonsWithCart(cart)
 }
 
-function removeFromCart(index){
+function removeFromCart(index) {
     const cart = JSON.parse(localStorage.getItem('cart')) || []
 
-    const remmvoeProduct = cart.splice(index , 1)[0]
-    localStorage.setItem('cart' , JSON.stringify(cart))
+    const remmvoeProduct = cart.splice(index, 1)[0]
+    localStorage.setItem('cart', JSON.stringify(cart))
     updateCart()
     updateButtonState(remmvoeProduct.id)
 
 }
 
-function syncButtonsWithCart(cart){
+function syncButtonsWithCart(cart) {
     const safeCart = Array.isArray(cart) ? cart : (JSON.parse(localStorage.getItem('cart')) || [])
     const cartIds = new Set(safeCart.map(item => String(item.id)))
 
     const allButtons = document.querySelectorAll(".btn_add_cart")
     allButtons.forEach(button => {
         const id = button.dataset.id
-        if(cartIds.has(String(id))){
+        if (cartIds.has(String(id))) {
             button.classList.add("active")
             button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in Cart`
-        }else{
+        } else {
             button.classList.remove("active")
             button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> add to cart`
         }
     })
 }
 
-function updateButtonState(productId){
-   const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
-   allMathingButtons.forEach(button => {
-    button.classList.remove('active');
-    button.innerHTML =   `<i class="fa-solid fa-cart-shopping"></i> add to cart`
-   })
+function updateButtonState(productId) {
+    const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
+    allMathingButtons.forEach(button => {
+        button.classList.remove('active');
+        button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> add to cart`
+    })
 }
