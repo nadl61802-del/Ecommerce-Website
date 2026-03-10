@@ -4,6 +4,8 @@ fetch('products.json')
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        const cart = JSON.parse(localStorage.getItem('cart')) || []
+        const cartIds = new Set(cart.map(item => String(item.id)))
         const swiper_items_sale = document.getElementById("swiper_items_sale")
         const swiper_tepols = document.getElementById("swiper_tepols")
         const swiper_Appliances = document.getElementById("swiper_Appliances")
@@ -11,6 +13,9 @@ fetch('products.json')
 
         data.forEach(product => {
             if (product.old_price) {
+                const inCart = cartIds.has(String(product.id))
+                const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
+                const btnText = inCart ? "Item in Cart" : "add to cart"
                 const percent_disc = Math.floor((product.old_price - product.price) / product.old_price * 100)
                 swiper_items_sale.innerHTML += `
                 <div class="swiper-slide product">
@@ -31,8 +36,8 @@ fetch('products.json')
                         <p class="old_price">$${product.old_price}</p>
                     </div>
                     <div class="icons">
-                        <span class="btn_add_cart" data-id="${product.id}">
-                            <i class="fa-solid fa-cart-shopping"></i> add to cart
+                        <span class="${btnClass}" data-id="${product.id}">
+                            <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
                         <span class="icon_product">
                             <i class="fa-regular fa-heart"></i>
@@ -44,6 +49,9 @@ fetch('products.json')
 
         data.forEach(product => {
             if (product.catetory == "electronics") {
+                const inCart = cartIds.has(String(product.id))
+                const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
+                const btnText = inCart ? "Item in Cart" : "add to cart"
                 const old_price_pargrahp = product.old_price ? `<p class="old_price">$${product.old_price}</p>` : "";
                 const old_price_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
                 swiper_tepols.innerHTML += `
@@ -65,8 +73,8 @@ fetch('products.json')
                         ${old_price_pargrahp}
                     </div>
                     <div class="icons">
-                        <span class="btn_add_cart" data-id="${product.id}">
-                            <i class="fa-solid fa-cart-shopping"></i> add to cart
+                        <span class="${btnClass}" data-id="${product.id}">
+                            <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
                         <span class="icon_product">
                             <i class="fa-regular fa-heart"></i>
@@ -78,6 +86,9 @@ fetch('products.json')
 
         data.forEach(product => {
             if (product.catetory == "appliances") {
+                const inCart = cartIds.has(String(product.id))
+                const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
+                const btnText = inCart ? "Item in Cart" : "add to cart"
                 const old_price_pargrahp = product.old_price ? `<p class="old_price">$${product.old_price}</p>` : "";
                 const old_price_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
                 swiper_Appliances.innerHTML += `
@@ -99,8 +110,8 @@ fetch('products.json')
                         ${old_price_pargrahp}
                     </div>
                     <div class="icons">
-                        <span class="btn_add_cart" data-id="${product.id}">
-                            <i class="fa-solid fa-cart-shopping"></i> add to cart
+                        <span class="${btnClass}" data-id="${product.id}">
+                            <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
                         <span class="icon_product">
                             <i class="fa-regular fa-heart"></i>
@@ -112,6 +123,9 @@ fetch('products.json')
 
         data.forEach(product => {
             if (product.catetory == "mobiles") {
+                const inCart = cartIds.has(String(product.id))
+                const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
+                const btnText = inCart ? "Item in Cart" : "add to cart"
                 const old_price_pargrahp = product.old_price ? `<p class="old_price">$${product.old_price}</p>` : "";
                 const old_price_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
                 swiper_mobiles.innerHTML += `
@@ -133,8 +147,8 @@ fetch('products.json')
                         ${old_price_pargrahp}
                     </div>
                     <div class="icons">
-                        <span class="btn_add_cart" data-id="${product.id}">
-                            <i class="fa-solid fa-cart-shopping"></i> add to cart
+                        <span class="${btnClass}" data-id="${product.id}">
+                            <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
                         <span class="icon_product">
                             <i class="fa-regular fa-heart"></i>
@@ -148,13 +162,19 @@ fetch('products.json')
         updateCart()
 
         document.addEventListener("click", function (event) {
+            const clearBtn = event.target.closest(".clear_cart")
+            if (clearBtn) {
+                clearCart()
+                return
+            }
+
             const button = event.target.closest(".btn_add_cart")
             if (!button) return
 
-            const productId = Number(button.dataset.id)   // هنا التعديل
+            const productId = Number(button.dataset.id)
+            if (!Number.isFinite(productId)) return
 
             const selectedProduct = data.find(product => product.id === productId)
-
             if (!selectedProduct) return
 
             addToCart(selectedProduct)
@@ -179,6 +199,17 @@ function addToCart(product) {
 
     localStorage.setItem('cart', JSON.stringify(cart))
     updateCart()
+}
+
+
+function clearCart() {
+    localStorage.removeItem('cart')
+    updateCart()
+
+    document.querySelectorAll(".btn_add_cart").forEach(btn => {
+        btn.classList.remove("active")
+        btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> add to cart`
+    })
 }
 
 function updateCart() {

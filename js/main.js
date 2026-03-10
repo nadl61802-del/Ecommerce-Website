@@ -14,7 +14,7 @@ fetch('products.json')
 .then(response => response.json())
 .then(data => {
 
-    updateCart() // âœï¸ FIX 1: ØªØ­Ø¯ÙŠØ« Ø§Ù„ÙƒØ§Ø±Øª Ø£ÙˆÙ„ Ù…Ø§ Ø§Ù„Ø¯Ø§ØªØ§ ØªÙŠØ¬ÙŠ
+    updateCart() // 
 
     document.addEventListener("click", function(event){
 
@@ -26,7 +26,7 @@ fetch('products.json')
 
         const selcetedProduct = data.find(product => product.id == productId)
 
-        if(!selcetedProduct) return // âœï¸ FIX 2: Ù„Ùˆ Ø§Ù„Ù…Ù†ØªØ¬ Ù…Ø´ Ù…ÙˆØ¬ÙˆØ¯ Ù…ØªÙƒÙ…Ù„Ø´
+        if(!selcetedProduct) return // 
 
         addToCart(selcetedProduct)
 
@@ -65,7 +65,7 @@ function updateCart() {
 
     cartItemsContainer.innerHTML = ""
 
-    cart.forEach((item) => {
+    cart.forEach((item , index) => {
 
         cartItemsContainer.innerHTML += `
         <div class="item_cart">
@@ -79,8 +79,55 @@ function updateCart() {
                         <button class="Increas_quantity">+</button>
                     </div>
                 </div>
-                <button class="delete_item"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="delete_item" data-inex="${index}" ><i class="fa-solid fa-trash-can"></i></button>
         </div>
         `
     })
+
+
+    const delteButtons = document.querySelectorAll('.delete_item')
+    delteButtons.forEach(button =>{
+        button.addEventListener('click' , (event) => {
+            const itemIndex = event.target.closest('button').getAttribute('data-inex')
+            removeFromCart(itemIndex)
+
+        })
+    })
+
+    syncButtonsWithCart(cart)
+}
+
+function removeFromCart(index){
+    const cart = JSON.parse(localStorage.getItem('cart')) || []
+
+    const remmvoeProduct = cart.splice(index , 1)[0]
+    localStorage.setItem('cart' , JSON.stringify(cart))
+    updateCart()
+    updateButtonState(remmvoeProduct.id)
+
+}
+
+function syncButtonsWithCart(cart){
+    const safeCart = Array.isArray(cart) ? cart : (JSON.parse(localStorage.getItem('cart')) || [])
+    const cartIds = new Set(safeCart.map(item => String(item.id)))
+
+    const allButtons = document.querySelectorAll(".btn_add_cart")
+    allButtons.forEach(button => {
+        const id = button.dataset.id
+        if(cartIds.has(String(id))){
+            button.classList.add("active")
+            button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in Cart`
+        }else{
+            button.classList.remove("active")
+            button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> add to cart`
+        }
+    })
+}
+
+function updateButtonState(productId){
+   const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
+   allMathingButtons.forEach(button => {
+    button.classList.remove('active');
+    button.innerHTML =   `<i class="fa-solid fa-cart-shopping"></i> add to cart`
+   })
 }
