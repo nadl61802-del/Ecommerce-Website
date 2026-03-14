@@ -9,12 +9,59 @@
 
 
 
-const sheetName = 'Sheet1'
+const SHEET_NAME = 'Sheet1'
+const SPREADSHEET_ID = '1YcsywPeJRdGzopG-hUgf7lBAwvBonTnMn7SedFuxRfQ' // ID الشيت
 const scriptProp = PropertiesService.getScriptProperties()
 
-function intialSetup () {
+const HEADERS = [
+  'Date',
+  'OrderId',
+  'Email',
+  'Phone',
+  'FirstName',
+  'LastName',
+  'Address',
+  'City',
+  'State',
+  'Zip',
+  'Country',
+  'ShippingMethod',
+  'ShippingCost',
+  'PaymentMethod',
+  'Notes',
+  'Items',
+  'Subtotal',
+  'Tax',
+  'Total'
+]
+
+const FIELD_MAP = {
+  Email: 'email',
+  Phone: 'phone',
+  FirstName: 'first_name',
+  LastName: 'last_name',
+  Address: 'address',
+  City: 'city',
+  State: 'state',
+  Zip: 'zip',
+  Country: 'country',
+  ShippingMethod: 'shipping',
+  ShippingCost: 'shipping_cost',
+  PaymentMethod: 'payment',
+  Notes: 'notes',
+  Items: 'items',
+  Subtotal: 'subtotal',
+  Tax: 'tax',
+  Total: 'total'
+}
+
+function initialSetup () {
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
   scriptProp.setProperty('key', activeSpreadsheet.getId())
+}
+
+function intialSetup () {
+  initialSetup()
 }
 
 function doPost (e) {
@@ -22,30 +69,88 @@ function doPost (e) {
   lock.tryLock(10000)
 
   try {
-    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
-    const sheet = doc.getSheetByName(sheetName)
+    const spreadsheetId = getSpreadsheetId_()
+    if (!spreadsheetId) {
+      throw new Error('Spreadsheet ID not set. Run initialSetup() or set SPREADSHEET_ID.')
+    }
 
-    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+    const doc = SpreadsheetApp.openById(spreadsheetId)
+    const sheet = doc.getSheetByName(SHEET_NAME) || doc.insertSheet(SHEET_NAME)
+
+    ensureHeaders_(sheet)
+
+    const payload = parseRequest_(e)
+    const orderId = payload.order_id || payload.orderId || Utilities.getUuid()
+
     const nextRow = sheet.getLastRow() + 1
-
-    const newRow = headers.map(function(header) {
-      return header === 'Date' ? new Date() : e.parameter[header]
+    const row = HEADERS.map(function (header) {
+      if (header === 'Date') return new Date()
+      if (header === 'OrderId') return orderId
+      const key = FIELD_MAP[header]
+      const value = key ? payload[key] : ''
+      return value !== undefined ? value : ''
     })
 
-    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+    sheet.getRange(nextRow, 1, 1, row.length).setValues([row])
 
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .createTextOutput(JSON.stringify({ result: 'success', row: nextRow, orderId }))
       .setMimeType(ContentService.MimeType.JSON)
   }
 
-  catch (e) {
+  catch (err) {
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .createTextOutput(JSON.stringify({ result: 'error', error: String(err) }))
       .setMimeType(ContentService.MimeType.JSON)
   }
 
   finally {
     lock.releaseLock()
+  }
+}
+
+function parseRequest_ (e) {
+  if (e && e.postData && e.postData.contents) {
+    try {
+      return JSON.parse(e.postData.contents)
+    } catch (err) {
+      if (e && e.parameter) return e.parameter
+      return parseQueryString_(e.postData.contents)
+    }
+  }
+  return (e && e.parameter) ? e.parameter : {}
+}
+
+function getSpreadsheetId_ () {
+  const stored = scriptProp.getProperty('key')
+  if (stored) return stored
+  return SPREADSHEET_ID
+}
+
+function parseQueryString_ (query) {
+  if (!query) return {}
+  const result = {}
+  const pairs = query.split('&')
+  pairs.forEach(function (pair) {
+    const parts = pair.split('=')
+    const key = decodeURIComponent(parts[0] || '')
+    const value = decodeURIComponent(parts[1] || '')
+    if (!key) return
+    result[key] = value
+  })
+  return result
+}
+
+function ensureHeaders_ (sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS])
+    return
+  }
+  const firstRow = sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0]
+  const isSame = HEADERS.every(function (header, index) {
+    return firstRow[index] === header
+  })
+  if (!isSame) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS])
   }
 }

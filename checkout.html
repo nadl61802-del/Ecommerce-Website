@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD&MA |Online Store </title>
+    <title>AD&MA | Checkout</title>
     <link rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/checkout.css">
 </head>
 
-<body>
-
+<body class="checkout-page">
 
     <div class="cart">
         <div class="top_cart">
@@ -21,13 +19,7 @@
             <span onclick="open_clise_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
         </div>
 
-        <div class="items_in_cart" id="cart_items">
-
-            
-
-            
-
-        </div>
+        <div class="items_in_cart" id="cart_items"></div>
 
         <div class="buttom_cart">
             <div class="total">
@@ -37,7 +29,6 @@
 
             <div class="button_cart">
                 <a href="checkout.html" class="btn_cart btn">Checkout</a>
-                
                 <span onclick="open_clise_cart()" class="btn_cart btn trans_bg">Shop More</span>
             </div>
         </div>
@@ -61,7 +52,7 @@
             </form>
 
             <ul class="mobile-nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Accesories</a></li>
                 <li><a href="#">Blog</a></li>
@@ -70,17 +61,14 @@
         </div>
     </div>
 
-    <!-- Start header -->
-
     <header>
         <div class="top-header">
             <div class="container">
-                <a href="#" class="logo"><img src="img/images_logo_two.png" alt=""></a>
+                <a href="index.html" class="logo"><img src="img/images_logo_two.png" alt=""></a>
 
                 <form action="" class="search-box" data-search-form>
                     <div class="selact-box">
                         <select name="category" id="category">
-
                             <option value="All Categories">All Categories</option>
                             <option value="Electronics & Digita">Electronics & Digita</option>
                             <option value="Phones & Tablet">Phones & Tablet</option>
@@ -88,16 +76,15 @@
                             <option value="Jewelry & Watches">Jewelry & Watches</option>
                             <option value="washing & Machine">washing & Machine</option>
                             <option value="Toys & Hobbies">Toys & Hobbies</option>
-
                         </select>
                     </div>
 
                     <input type="text" name="search" id="search" placeholder="Search" required data-search-input>
-
-                    <button>
+                    <button type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
+
                 <div class="heeder-icons">
                     <div class="icon">
                         <a href="#"><i class="fa-regular fa-heart"></i>
@@ -118,7 +105,6 @@
             <div class="container">
                 <nav class="nav">
                     <div class="category_nav">
-
                         <div onclick="open_categ_list()" class="category-btn">
                             <i class="fa-solid fa-bars"></i>
                             <p>Browse Category</p>
@@ -126,7 +112,6 @@
                         </div>
 
                         <div class="category_nav_list">
-
                             <a href="#">Top 10 Offers</a>
                             <a href="#">Electronics & Digita</a>
                             <a href="#">Phones & Tablet</a>
@@ -135,19 +120,15 @@
                             <a href="#">Jewelry & Watches</a>
                             <a href="#">Toys & Hobbies</a>
                         </div>
-
                     </div>
 
                     <ul class="nav-links">
-
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Accesories</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
-
                     </ul>
-
                 </nav>
 
                 <div class="login-signup btns">
@@ -155,225 +136,173 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <a href="#" class="btn"> Login <i class="fa-solid fa-right-to-bracket"></i></a>
-
                     <a href="#" class="btn">Sign Up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
-
             </div>
-
         </div>
-
-
     </header>
 
-    <!-- End header -->
-    <!-- Start mySwiper -->
-
-    <div class="slider">
+    <main class="checkout">
         <div class="container">
+            <div class="checkout__hero">
+                <div>
+                    <h1>Checkout</h1>
+                    <p>Complete your order in just a few steps.</p>
+                </div>
+                <div class="checkout__steps">
+                    <span class="step done">Cart</span>
+                    <span class="step active">Checkout</span>
+                    <span class="step">Payment</span>
+                    <span class="step">Done</span>
+                </div>
+            </div>
 
-            <div class="slide-swp mySwiper">
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <a href="#"><img src="img/banner_home1.png" alt=""></a>
+            <div class="checkout__grid">
+                <form action="https://script.google.com/macros/s/AKfycbyM-H42Kwx3PDEkEdRaJ8GqH069-SQqo6h0LDP9LpVnufvC6Mmd_CrGOgRf2jOhXXLllQ/exec" class="checkout__form" id="checkout_form">
+                    <div class="checkout-card">
+                        <h3>Contact Information</h3>
+                        <div class="field-row">
+                            <label class="field">
+                                <span>Email Address</span>
+                                <input type="email" name="email" placeholder="you@example.com" required>
+                            </label>
+                            <label class="field">
+                                <span>Phone Number</span>
+                                <input type="tel" name="phone" placeholder="+20 10 1234 5678" required>
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="swiper-slide">
-                        <a href="#"><img src="img/banner_home2.png" alt=""></a>
+                    <div class="checkout-card">
+                        <h3>Shipping Address</h3>
+                        <div class="field-row">
+                            <label class="field">
+                                <span>First Name</span>
+                                <input type="text" name="first_name" placeholder="first_name" required>
+                            </label>
+                            <label class="field">
+                                <span>Last Name</span>
+                                <input type="text" name="last_name" placeholder="last_name" required>
+                            </label>
+                        </div>
+                        <label class="field">
+                            <span>Street Address</span>
+                            <input type="text" name="address" placeholder="12 Main Street" required>
+                        </label>
+                        <div class="field-row three">
+                            <label class="field">
+                                <span>City</span>
+                                <input type="text" name="city" placeholder="Cairo" required>
+                            </label>
+                            <label class="field">
+                                <span>State</span>
+                                <input type="text" name="state" placeholder="Cairo" required>
+                            </label>
+                            <label class="field">
+                                <span>Postal Code</span>
+                                <input type="text" name="zip" placeholder="11311" required>
+                            </label>
+                        </div>
+                        <label class="field">
+                            <span>Country</span>
+                            <select name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="egypt">Egypt</option>
+                                <option value="ksa">Saudi Arabia</option>
+                                <option value="uae">United Arab Emirates</option>
+                            </select>
+                        </label>
                     </div>
 
-
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-            <div class="banner">
-                <a href="#"><img src="img/banner_home3.png" alt=""></a>
-            </div>
-        </div>
-    </div>
-    <!-- End mySwiper -->
-
-    <div class="banners_4">
-        <div class="container">
-
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_1.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                    <div class="checkout-card">
+                        <h3>Delivery Method</h3>
+                        <label class="option-card">
+                            <input type="radio" name="shipping" value="standard" data-shipping="0" checked>
+                            <span>
+                                <strong>Standard Delivery</strong>
+                                <em>3-5 business days</em>
+                            </span>
+                            <span class="price">Free</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="shipping" value="express" data-shipping="15">
+                            <span>
+                                <strong>Express Delivery</strong>
+                                <em>1-2 business days</em>
+                            </span>
+                            <span class="price">$15</span>
+                        </label>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
-            </div>
 
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_2.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                    <div class="checkout-card">
+                        <h3>Payment Method</h3>
+                        <label class="option-card">
+                            <input type="radio" name="payment" value="card" checked>
+                            <span>
+                                <strong>Credit / Debit Card</strong>
+                                <em>Secure payment with SSL encryption</em>
+                            </span>
+                            <span class="brand-icons">
+                                <i class="fa-brands fa-cc-visa"></i>
+                                <i class="fa-brands fa-cc-mastercard"></i>
+                                <i class="fa-brands fa-cc-amex"></i>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="payment" value="cod">
+                            <span>
+                                <strong>Cash on Delivery</strong>
+                                <em>Pay when you receive the order</em>
+                            </span>
+                            <span class="price">COD</span>
+                        </label>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
-            </div>
 
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_3.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                    <div class="checkout-card">
+                        <h3>Order Notes</h3>
+                        <label class="field">
+                            <span>Notes (Optional)</span>
+                            <textarea rows="4" name="notes" placeholder="Write any instructions for delivery..."></textarea>
+                        </label>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
-            </div>
+                </form>
 
-            <div class="box">
-                <a href="#" class="link_btn"></a>
+                <aside class="checkout__summary">
+                    <div class="summary-card">
+                        <h3>Order Summary</h3>
+                        <div class="summary-items" id="checkout_items"></div>
 
-                <img src="img/banner3_4.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                        <div class="summary-row">
+                            <span>Items (<span id="checkout_count">0</span>)</span>
+                            <span id="checkout_subtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="checkout_shipping">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span id="checkout_tax">$0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="checkout_total">$0.00</span>
+                        </div>
+
+                        <div class="summary-coupon">
+                            <input type="text" placeholder="Coupon Code">
+                            <button type="button">Apply</button>
+                        </div>
+
+                        <button class="checkout__btn" id="place_order" type="submit" form="checkout_form">
+                            Place Order
+                        </button>
+                        <p class="summary-note"><i class="fa-solid fa-lock"></i> Secure checkout with 128-bit SSL</p>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
+                </aside>
             </div>
         </div>
-    </div>
-
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Hot Deals</h2>
-                </div>
-
-                <div class="products swiper-wrapper" id="swiper_items_sale">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="banners_poto">
-        <div class="container">
-            <div class="banners_box banner_2_img">
-                <a href="#" class="box"><img src="img/banner_box4.jpg" alt=""></a>
-                <a href="#" class="box"><img src="img/banner_box5.jpg" alt=""></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Electronics</h2>
-                </div>
-
-                <div class="products swiper-wrapper" id="swiper_tepols">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Appliances</h2>
-                </div>
-
-                <div class="products swiper-wrapper" id="swiper_Appliances">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="banners_poto_two">
-        <div class="container">
-            <div class="banners_box banner_2_img">
-                <a href="#" class="box"><img src="img/banner_box1.jpg" alt=""></a>
-                <a href="#" class="box"><img src="img/banner_box2.jpg" alt=""></a>
-                <a href="#" class="box"><img src="img/banner_box3.jpg" alt=""></a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Mobiles</h2>
-                </div>
-
-                <div class="products swiper-wrapper" id="swiper_mobiles">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
-            </div>
-        </div>
-    </div>
-
-
-
-
+    </main>
 
     <footer>
         <div class="container">
@@ -436,25 +365,8 @@
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-<script src="js/items.js"></script>
-<script src="js/swiper.js"></script>
-<script src="js/main.js"></script>
-
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
 </body>
 
 </html>

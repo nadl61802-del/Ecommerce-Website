@@ -39,7 +39,7 @@ fetch('products.json')
                         <span class="${btnClass}" data-id="${product.id}">
                             <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
-                        <span class="icon_product">
+                        <span class="icon_product btn_favorite" data-id="${product.id}">
                             <i class="fa-regular fa-heart"></i>
                         </span>
                     </div>
@@ -76,7 +76,7 @@ fetch('products.json')
                         <span class="${btnClass}" data-id="${product.id}">
                             <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
-                        <span class="icon_product">
+                        <span class="icon_product btn_favorite" data-id="${product.id}">
                             <i class="fa-regular fa-heart"></i>
                         </span>
                     </div>
@@ -113,7 +113,7 @@ fetch('products.json')
                         <span class="${btnClass}" data-id="${product.id}">
                             <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
-                        <span class="icon_product">
+                        <span class="icon_product btn_favorite" data-id="${product.id}">
                             <i class="fa-regular fa-heart"></i>
                         </span>
                     </div>
@@ -150,7 +150,7 @@ fetch('products.json')
                         <span class="${btnClass}" data-id="${product.id}">
                             <i class="fa-solid fa-cart-shopping"></i> ${btnText}
                         </span>
-                        <span class="icon_product">
+                        <span class="icon_product btn_favorite" data-id="${product.id}">
                             <i class="fa-regular fa-heart"></i>
                         </span>
                     </div>
@@ -158,5 +158,6 @@ fetch('products.json')
             }
         });
 
+        window.dispatchEvent(new Event("products:rendered"))
     })
 
