@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD&MA | إنشاء حساب</title>
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body class="auth-page">
+    <main class="auth-shell">
+        <div class="auth-top">
+            <a href="index.html" class="auth-brand">
+                <img src="img/images_logo_two.png" alt="AD&MA">
+                <div class="auth-brand__text">
+                    <strong>AD&MA</strong>
+                    <span>العروض تبدأ من هنا</span>
+                </div>
+            </a>
+            <a href="login.html" class="auth-ghost">لديك حساب؟</a>
+        </div>
+
+        <section class="auth-grid">
+            <div class="auth-card">
+                <div class="auth-card__header">
+                    <span class="auth-kicker">إنشاء حساب جديد</span>
+                    <h1 class="auth-title">ابدأ رحلتك معنا</h1>
+                    <p>أنشئ حسابك خلال أقل من دقيقة واستمتع بخصومات مخصصة.</p>
+                </div>
+
+                <div class="auth-progress">
+                    <span>الخطوة 1 من 2: بيانات الحساب</span>
+                    <div class="auth-progress__bar"><span></span></div>
+                </div>
+
+                <form class="auth-form">
+                    <div class="auth-form__grid">
+                        <label class="auth-field">
+                            <span>الاسم الأول</span>
+                            <input type="text" class="auth-input" placeholder="أحمد" autocomplete="given-name" required>
+                        </label>
+                        <label class="auth-field">
+                            <span>اسم العائلة</span>
+                            <input type="text" class="auth-input" placeholder="محمد" autocomplete="family-name" required>
+                        </label>
+                    </div>
+
+                    <label class="auth-field">
+                        <span>البريد الإلكتروني</span>
+                        <input type="email" class="auth-input" placeholder="name@email.com" autocomplete="email" required>
+                    </label>
+
+                    <label class="auth-field">
+                        <span>رقم الهاتف</span>
+                        <input type="tel" class="auth-input" placeholder="+20 10 1234 5678" autocomplete="tel" required>
+                    </label>
+
+                    <label class="auth-field">
+                        <span>كلمة المرور</span>
+                        <input type="password" class="auth-input" placeholder="••••••••" autocomplete="new-password" required>
+                        <span class="auth-hint">يُفضّل 8 أحرف على الأقل مع رقم ورمز.</span>
+                    </label>
+
+                    <label class="auth-field">
+                        <span>تأكيد كلمة المرور</span>
+                        <input type="password" class="auth-input" placeholder="••••••••" autocomplete="new-password" required>
+                    </label>
+
+                    <label class="auth-check">
+                        <input type="checkbox" required>
+                        <span>أوافق على <a class="auth-link" href="#">الشروط والأحكام</a> وسياسة الخصوصية.</span>
+                    </label>
+
+                    <button class="auth-btn primary" type="submit">إنشاء الحساب</button>
+                </form>
+
+                <div class="auth-divider"><span>أو</span></div>
+
+                <div class="auth-social">
+                    <button type="button" class="auth-btn ghost">
+                        <i class="fa-brands fa-google"></i>
+                        التسجيل عبر Google
+                    </button>
+                    <button type="button" class="auth-btn ghost">
+                        <i class="fa-brands fa-apple"></i>
+                        التسجيل عبر Apple
+                    </button>
+                </div>
+
+                <p class="auth-switch">لديك حساب؟ <a class="auth-link" href="login.html">تسجيل الدخول</a></p>
+            </div>
+
+            <div class="auth-hero">
+                <h2>مزايا العضوية الحصرية</h2>
+                <p>احصل على عروض شخصية، نقاط مكافآت، وتجربة دفع مختصرة في كل طلب.</p>
+
+                <div class="auth-chip-group">
+                    <div class="auth-chip"><i class="fa-solid fa-gift"></i> خصومات ومكافآت أسبوعية</div>
+                    <div class="auth-chip"><i class="fa-solid fa-heart"></i> قوائم مفضلة متعددة</div>
+                    <div class="auth-chip"><i class="fa-solid fa-truck-fast"></i> متابعة الشحن لحظة بلحظة</div>
+                </div>
+
+                <div class="auth-hero__card">
+                    <div class="auth-hero__item">
+                        <i class="fa-solid fa-star"></i>
+                        <span>عروض خاصة للأعضاء على أحدث الأجهزة.</span>
+                    </div>
+                    <div class="auth-hero__item">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>مدفوعات مؤمنة بتشفير عالي المستوى.</span>
+                    </div>
+                    <div class="auth-hero__item">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>فريق دعم سريع لمساعدتك في أي وقت.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

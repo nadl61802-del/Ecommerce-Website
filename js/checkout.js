@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyM-H42Kwx3PDEkEdRaJ8GqH069-SQqo6h0LDP9LpVnufvC6Mmd_CrGOgRf2jOhXXLllQ/exec"
+﻿const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyM-H42Kwx3PDEkEdRaJ8GqH069-SQqo6h0LDP9LpVnufvC6Mmd_CrGOgRf2jOhXXLllQ/exec"
 
 function formatPrice(value) {
     const safe = Number(value) || 0
@@ -182,17 +182,73 @@ function collectCheckoutData() {
 function setupCheckoutSubmit() {
     const form = document.getElementById("checkout_form")
     const placeOrderBtn = document.getElementById("place_order")
+    const confirmModal = document.getElementById("confirm_modal")
+    const confirmSubmitBtn = document.getElementById("confirm_submit")
+    const confirmCloseButtons = document.querySelectorAll("[data-confirm-close]")
+    const successModal = document.getElementById("success_modal")
+    const successCloseButtons = document.querySelectorAll("[data-success-close]")
+
     if (!form || !placeOrderBtn) return
 
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault()
-        const cart = getCartItems()
-        if (!cart.length) return
-        if (typeof form.reportValidity === "function" && !form.reportValidity()) return
+    const setConfirmModalState = (isOpen) => {
+        if (!confirmModal) return
+        confirmModal.classList.toggle("active", isOpen)
+        confirmModal.setAttribute("aria-hidden", isOpen ? "false" : "true")
+        document.body.classList.toggle("confirm-open", isOpen)
+        if (isOpen && confirmSubmitBtn) {
+            confirmSubmitBtn.focus()
+        }
+    }
+
+    const closeConfirmModal = () => {
+        if (!confirmModal) return
+        confirmModal.dataset.pending = ""
+        setConfirmModalState(false)
+    }
+
+    const setSuccessModalState = (isOpen) => {
+        if (!successModal) return
+        successModal.classList.toggle("active", isOpen)
+        successModal.setAttribute("aria-hidden", isOpen ? "false" : "true")
+        document.body.classList.toggle("success-open", isOpen)
+    }
+
+    const closeSuccessModal = () => {
+        if (!successModal) return
+        setSuccessModalState(false)
+    }
+
+    if (confirmModal) {
+        confirmCloseButtons.forEach(button => {
+            button.addEventListener("click", closeConfirmModal)
+        })
+    }
+
+    if (successModal) {
+        successCloseButtons.forEach(button => {
+            button.addEventListener("click", closeSuccessModal)
+        })
+    }
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeConfirmModal()
+            closeSuccessModal()
+        }
+    })
+
+    let isSubmitting = false
+
+    const sendOrder = async () => {
+        if (isSubmitting) return
+        isSubmitting = true
 
         placeOrderBtn.disabled = true
+        if (confirmSubmitBtn) confirmSubmitBtn.disabled = true
         const originalText = placeOrderBtn.textContent
         placeOrderBtn.textContent = "Sending..."
+
+        let success = false
 
         try {
             const payload = collectCheckoutData()
@@ -220,26 +276,55 @@ function setupCheckoutSubmit() {
             }
 
             if (result && result.result === "success") {
+                success = true
                 localStorage.removeItem("cart")
                 if (typeof updateCart === "function") {
                     updateCart()
                 }
                 form.reset()
                 renderCheckoutSummary()
-                placeOrderBtn.textContent = originalText
+                setSuccessModalState(true)
                 return
             }
 
-            placeOrderBtn.disabled = false
-            placeOrderBtn.textContent = originalText
             const message = (result && result.error) ? result.error : (text || "حدث خطأ أثناء إرسال الطلب.")
             alert(message)
         } catch (err) {
-            placeOrderBtn.disabled = false
-            placeOrderBtn.textContent = originalText
             alert("تعذر الاتصال بالخادم. حاول مرة أخرى.")
+        } finally {
+            if (!success) {
+                placeOrderBtn.disabled = false
+            }
+            placeOrderBtn.textContent = originalText
+            if (confirmSubmitBtn) confirmSubmitBtn.disabled = false
+            isSubmitting = false
         }
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        const cart = getCartItems()
+        if (!cart.length) return
+        if (typeof form.reportValidity === "function" && !form.reportValidity()) return
+
+        if (!confirmModal || !confirmSubmitBtn) {
+            const ok = window.confirm("هل تريد تأكيد شراء المنتجات؟")
+            if (!ok) return
+            sendOrder()
+            return
+        }
+
+        confirmModal.dataset.pending = "true"
+        setConfirmModalState(true)
     })
+
+    if (confirmSubmitBtn) {
+        confirmSubmitBtn.addEventListener("click", () => {
+            if (!confirmModal || confirmModal.dataset.pending !== "true") return
+            closeConfirmModal()
+            sendOrder()
+        })
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -253,3 +338,4 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("cart:updated", () => {
     renderCheckoutSummary()
 })
+

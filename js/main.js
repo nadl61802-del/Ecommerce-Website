@@ -293,27 +293,79 @@ document.addEventListener("keydown", (event) => {
     }
 })
 
-// Search (basic filtering)
+// Search + Category filtering
 const searchForms = document.querySelectorAll("[data-search-form]")
 const searchInputs = document.querySelectorAll("[data-search-input]")
+const categoryLinks = document.querySelectorAll("[data-filter-category]")
+const categorySelects = document.querySelectorAll('select#category')
 let currentSearchTerm = ""
+let currentCategory = "all"
 
 function normalizeSearch(value) {
     return String(value || "").toLowerCase().trim()
 }
 
-function filterProducts(term) {
-    currentSearchTerm = term
-    const normalized = normalizeSearch(term)
+const categoryMap = {
+    "all categories": "all",
+    "electronics & digita": "electronics",
+    "phones & tablet": "mobiles",
+    "fashion & clothings": "fashion",
+    "jewelry & watches": "jewelry",
+    "washing & machine": "appliances",
+    "toys & hobbies": "toys",
+    "top 10 offers": "sale"
+}
+
+const categoryOptionMap = (() => {
+    const map = new Map()
+    categorySelects.forEach(select => {
+        Array.from(select.options).forEach(option => {
+            const raw = option.value || option.textContent
+            const normalized = normalizeSearch(raw)
+            const filterValue = categoryMap[normalized] || normalized || "all"
+            if (!map.has(filterValue)) {
+                map.set(filterValue, option.value || option.textContent)
+            }
+        })
+    })
+    if (!map.has("all")) {
+        map.set("all", "All Categories")
+    }
+    return map
+})()
+
+function resolveCategoryFilter(value) {
+    const normalized = normalizeSearch(value)
+    return categoryMap[normalized] || normalized || "all"
+}
+
+function applyProductFilters() {
+    const normalizedSearch = normalizeSearch(currentSearchTerm)
+    const normalizedCategory = normalizeSearch(currentCategory)
     const products = document.querySelectorAll(".product")
 
     if (!products.length) return
 
     products.forEach(product => {
         const nameEl = product.querySelector(".name_product")
-        const name = nameEl ? nameEl.textContent : ""
-        const match = normalizeSearch(name).includes(normalized)
-        product.classList.toggle("is-hidden", normalized && !match)
+        const name = normalizeSearch(nameEl ? nameEl.textContent : "")
+        const productCategory = normalizeSearch(product.dataset.category)
+        const isSale = product.dataset.sale === "true"
+
+        const matchSearch = !normalizedSearch || name.includes(normalizedSearch)
+        let matchCategory = true
+
+        if (normalizedCategory && normalizedCategory !== "all") {
+            if (normalizedCategory === "sale") {
+                matchCategory = isSale
+            } else if (productCategory) {
+                matchCategory = productCategory === normalizedCategory || name.includes(normalizedCategory)
+            } else {
+                matchCategory = name.includes(normalizedCategory)
+            }
+        }
+
+        product.classList.toggle("is-hidden", !(matchSearch && matchCategory))
     })
 
     const sliders = document.querySelectorAll(".slide_product")
@@ -324,11 +376,45 @@ function filterProducts(term) {
     })
 }
 
+function filterProducts(term) {
+    currentSearchTerm = term
+    applyProductFilters()
+}
+
+function setCategoryFilter(filter) {
+    currentCategory = filter || "all"
+    applyProductFilters()
+}
+
 function syncSearchInputs(value) {
     searchInputs.forEach(input => {
         if (input.value !== value) {
             input.value = value
         }
+    })
+}
+
+function syncCategorySelects(value) {
+    categorySelects.forEach(select => {
+        if (select.value !== value) {
+            select.value = value
+        }
+    })
+}
+
+function syncCategorySelectsByFilter(filter) {
+    const normalized = normalizeSearch(filter || "all")
+    const mappedValue = categoryOptionMap.get(normalized)
+    if (mappedValue) {
+        syncCategorySelects(mappedValue)
+    }
+}
+
+function updateCategoryActiveState(activeFilter) {
+    const normalizedActive = normalizeSearch(activeFilter)
+    categoryLinks.forEach(link => {
+        const filterValue = normalizeSearch(link.dataset.filterCategory)
+        link.classList.toggle("active", normalizedActive !== "all" && filterValue === normalizedActive)
     })
 }
 
@@ -350,10 +436,32 @@ searchForms.forEach(form => {
     })
 })
 
+categorySelects.forEach(select => {
+    select.addEventListener("change", (event) => {
+        const value = event.target.value
+        const filter = resolveCategoryFilter(value)
+        syncCategorySelects(value)
+        setCategoryFilter(filter)
+        updateCategoryActiveState(filter)
+    })
+})
+
+categoryLinks.forEach(link => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault()
+        const filter = link.dataset.filterCategory || "all"
+        const normalizedFilter = normalizeSearch(filter)
+        const isSame = normalizeSearch(currentCategory) === normalizedFilter
+        const nextFilter = (isSame && normalizedFilter !== "all") ? "all" : filter
+
+        setCategoryFilter(nextFilter)
+        updateCategoryActiveState(nextFilter)
+        syncCategorySelectsByFilter(nextFilter)
+    })
+})
+
 // Re-apply filtering after products load
 window.addEventListener("products:rendered", () => {
-    if (currentSearchTerm) {
-        filterProducts(currentSearchTerm)
-    }
+    applyProductFilters()
     syncFavoriteButtons()
 })

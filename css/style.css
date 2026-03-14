@@ -289,6 +289,11 @@ header .buttom-header nav .category_nav .category_nav_list a:hover {
     background: #d0d0d0;
 }
 
+header .buttom-header nav .category_nav .category_nav_list a.active {
+    background: var(--bg_color);
+    color: var(--main_color);
+}
+
 header .buttom-header nav .nav-links {
     display: flex;
     gap: 30px;

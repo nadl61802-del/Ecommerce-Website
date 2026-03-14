@@ -16,9 +16,11 @@ fetch('products.json')
                 const inCart = cartIds.has(String(product.id))
                 const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
                 const btnText = inCart ? "Item in Cart" : "add to cart"
+                const categoryAttr = product.catetory || ""
+                const saleAttr = product.old_price ? "true" : "false"
                 const percent_disc = Math.floor((product.old_price - product.price) / product.old_price * 100)
                 swiper_items_sale.innerHTML += `
-                <div class="swiper-slide product">
+                <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     <span class="sale_present">%${percent_disc}</span>
                     <div class="img_product">
                         <a href="#"><img src="${product.img}" alt=""></a>
@@ -52,10 +54,12 @@ fetch('products.json')
                 const inCart = cartIds.has(String(product.id))
                 const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
                 const btnText = inCart ? "Item in Cart" : "add to cart"
+                const categoryAttr = product.catetory || ""
+                const saleAttr = product.old_price ? "true" : "false"
                 const old_price_pargrahp = product.old_price ? `<p class="old_price">$${product.old_price}</p>` : "";
                 const old_price_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
                 swiper_tepols.innerHTML += `
-                <div class="swiper-slide product">
+                <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     ${old_price_div}
                     <div class="img_product">
                         <a href="#"><img src="${product.img}" alt=""></a>
@@ -89,10 +93,12 @@ fetch('products.json')
                 const inCart = cartIds.has(String(product.id))
                 const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
                 const btnText = inCart ? "Item in Cart" : "add to cart"
+                const categoryAttr = product.catetory || ""
+                const saleAttr = product.old_price ? "true" : "false"
                 const old_price_pargrahp = product.old_price ? `<p class="old_price">$${product.old_price}</p>` : "";
                 const old_price_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
                 swiper_Appliances.innerHTML += `
-                <div class="swiper-slide product">
+                <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     ${old_price_div}
                     <div class="img_product">
                         <a href="#"><img src="${product.img}" alt=""></a>
@@ -126,10 +132,12 @@ fetch('products.json')
                 const inCart = cartIds.has(String(product.id))
                 const btnClass = inCart ? "btn_add_cart active" : "btn_add_cart"
                 const btnText = inCart ? "Item in Cart" : "add to cart"
+                const categoryAttr = product.catetory || ""
+                const saleAttr = product.old_price ? "true" : "false"
                 const old_price_pargrahp = product.old_price ? `<p class="old_price">$${product.old_price}</p>` : "";
                 const old_price_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
                 swiper_mobiles.innerHTML += `
-                <div class="swiper-slide product">
+                <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     ${old_price_div}
                     <div class="img_product">
                         <a href="#"><img src="${product.img}" alt=""></a>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,10 +53,10 @@
 
             <ul class="mobile-nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Accesories</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="accessories.html">Accesories</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -112,22 +112,22 @@
                         </div>
 
                         <div class="category_nav_list">
-                            <a href="#">Top 10 Offers</a>
-                            <a href="#">Electronics & Digita</a>
-                            <a href="#">Phones & Tablet</a>
-                            <a href="#">Fashion & Clothings</a>
-                            <a href="#">Telivion & Monitor</a>
-                            <a href="#">Jewelry & Watches</a>
-                            <a href="#">Toys & Hobbies</a>
+                            <a href="#" data-filter-category="sale">Top 10 Offers</a>
+                            <a href="#" data-filter-category="electronics">Electronics & Digita</a>
+                            <a href="#" data-filter-category="mobiles">Phones & Tablet</a>
+                            <a href="#" data-filter-category="fashion">Fashion & Clothings</a>
+                            <a href="#" data-filter-category="monitor">Telivion & Monitor</a>
+                            <a href="#" data-filter-category="jewelry">Jewelry & Watches</a>
+                            <a href="#" data-filter-category="toys">Toys & Hobbies</a>
                         </div>
                     </div>
 
                     <ul class="nav-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Accesories</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="accessories.html">Accesories</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
 
@@ -135,8 +135,8 @@
                     <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" data-menu-open>
                         <i class="fa-solid fa-bars"></i>
                     </button>
-                    <a href="#" class="btn"> Login <i class="fa-solid fa-right-to-bracket"></i></a>
-                    <a href="#" class="btn">Sign Up <i class="fa-solid fa-user-plus"></i></a>
+                    <a href="login.html" class="btn"> Login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="signup.html" class="btn">Sign Up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -304,6 +304,38 @@
         </div>
     </main>
 
+    <div class="confirm-modal" id="confirm_modal" aria-hidden="true">
+        <div class="confirm-modal__overlay" data-confirm-close></div>
+        <div class="confirm-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="confirm_title" dir="rtl">
+            <div class="confirm-modal__header">
+                <h3 id="confirm_title">ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø´Ø±Ø§Ø¡</h3>
+                <button class="confirm-modal__close" type="button" aria-label="Ø¥ØºÙ„Ø§Ù‚" data-confirm-close>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p>Ù‡Ù„ ØªØ±ÙŠØ¯ ØªØ£ÙƒÙŠØ¯ Ø´Ø±Ø§Ø¡ Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª Ø§Ù„Ø¢Ù†ØŸ Ø³ÙŠØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø·Ù„Ø¨ ÙÙˆØ±Ù‹Ø§.</p>
+            <div class="confirm-modal__actions">
+                <button type="button" class="confirm-btn ghost" data-confirm-close>Ø±Ø¬ÙˆØ¹</button>
+                <button type="button" class="confirm-btn primary" id="confirm_submit">ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø´Ø±Ø§Ø¡</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-modal" id="success_modal" aria-hidden="true">
+        <div class="success-modal__overlay" data-success-close></div>
+        <div class="success-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="success_title" dir="rtl">
+            <div class="success-modal__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 id="success_title">ØªÙ… ØªØ£ÙƒÙŠØ¯ Ø·Ù„Ø¨Ùƒ Ø¨Ù†Ø¬Ø§Ø­</h3>
+            <p>Ø´ÙƒØ±Ù‹Ø§ Ù„Ø·Ù„Ø¨Ùƒ! Ø³Ù†Ø±Ø³Ù„ Ù„Ùƒ ØªØ­Ø¯ÙŠØ«Ø§Øª Ø§Ù„Ø´Ø­Ù† Ø¹Ù„Ù‰ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.</p>
+            <div class="success-modal__actions">
+                <a href="index.html" class="success-btn primary">Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„ØªØ³ÙˆÙ‚</a>
+                <button type="button" class="success-btn ghost" data-success-close>Ø¥ØºÙ„Ø§Ù‚</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="big_row">
@@ -370,3 +402,4 @@
 </body>
 
 </html>
+

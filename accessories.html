@@ -4,30 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD&MA |Online Store </title>
+    <title>AD&MA | Accessories</title>
     <link rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/pages.css">
 </head>
 
 <body>
-
-
     <div class="cart">
         <div class="top_cart">
             <h3>Cart Items : <span class="count_items_cart">0</span></h3>
             <span onclick="open_clise_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
         </div>
 
-        <div class="items_in_cart" id="cart_items">
-
-            
-
-            
-
-        </div>
+        <div class="items_in_cart" id="cart_items"></div>
 
         <div class="buttom_cart">
             <div class="total">
@@ -37,7 +28,6 @@
 
             <div class="button_cart">
                 <a href="checkout.html" class="btn_cart btn">Checkout</a>
-                
                 <span onclick="open_clise_cart()" class="btn_cart btn trans_bg">Shop More</span>
             </div>
         </div>
@@ -61,7 +51,7 @@
             </form>
 
             <ul class="mobile-nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="accessories.html">Accesories</a></li>
                 <li><a href="blog.html">Blog</a></li>
@@ -70,17 +60,14 @@
         </div>
     </div>
 
-    <!-- Start header -->
-
     <header>
         <div class="top-header">
             <div class="container">
-                <a href="#" class="logo"><img src="img/images_logo_two.png" alt=""></a>
+                <a href="index.html" class="logo"><img src="img/images_logo_two.png" alt=""></a>
 
                 <form action="" class="search-box" data-search-form>
                     <div class="selact-box">
                         <select name="category" id="category">
-
                             <option value="All Categories">All Categories</option>
                             <option value="Electronics & Digita">Electronics & Digita</option>
                             <option value="Phones & Tablet">Phones & Tablet</option>
@@ -88,12 +75,10 @@
                             <option value="Jewelry & Watches">Jewelry & Watches</option>
                             <option value="washing & Machine">washing & Machine</option>
                             <option value="Toys & Hobbies">Toys & Hobbies</option>
-
                         </select>
                     </div>
 
                     <input type="text" name="search" id="search" placeholder="Search" required data-search-input>
-
                     <button>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -118,7 +103,6 @@
             <div class="container">
                 <nav class="nav">
                     <div class="category_nav">
-
                         <div onclick="open_categ_list()" class="category-btn">
                             <i class="fa-solid fa-bars"></i>
                             <p>Browse Category</p>
@@ -126,7 +110,6 @@
                         </div>
 
                         <div class="category_nav_list">
-
                             <a href="#" data-filter-category="sale">Top 10 Offers</a>
                             <a href="#" data-filter-category="electronics">Electronics & Digita</a>
                             <a href="#" data-filter-category="mobiles">Phones & Tablet</a>
@@ -135,19 +118,15 @@
                             <a href="#" data-filter-category="jewelry">Jewelry & Watches</a>
                             <a href="#" data-filter-category="toys">Toys & Hobbies</a>
                         </div>
-
                     </div>
 
                     <ul class="nav-links">
-
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="accessories.html">Accesories</a></li>
+                        <li class="active"><a href="accessories.html">Accesories</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
-
                     </ul>
-
                 </nav>
 
                 <div class="login-signup btns">
@@ -155,225 +134,118 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <a href="login.html" class="btn"> Login <i class="fa-solid fa-right-to-bracket"></i></a>
-
                     <a href="signup.html" class="btn">Sign Up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
-
             </div>
-
         </div>
-
-
     </header>
 
-    <!-- End header -->
-    <!-- Start mySwiper -->
-
-    <div class="slider">
-        <div class="container">
-
-            <div class="slide-swp mySwiper">
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <a href="#"><img src="img/banner_home1.png" alt=""></a>
+    <main class="page-main">
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero__content">
+                    <h1>Accessories That Upgrade Your Everyday</h1>
+                    <p>From cases and chargers to smart wearables, discover accessories designed to protect, power, and personalize your tech.</p>
+                    <div class="hero-badges">
+                        <span class="hero-badge">Certified Accessories</span>
+                        <span class="hero-badge">Best Value Picks</span>
+                        <span class="hero-badge">Fast Delivery</span>
                     </div>
-
-                    <div class="swiper-slide">
-                        <a href="#"><img src="img/banner_home2.png" alt=""></a>
+                </div>
+                <div class="hero-card">
+                    <h3>Top Accessories</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item"><strong>120+</strong><span>New arrivals</span></div>
+                        <div class="stat-item"><strong>4.9</strong><span>Avg reviews</span></div>
+                        <div class="stat-item"><strong>3-5</strong><span>Days delivery</span></div>
+                        <div class="stat-item"><strong>30%</strong><span>Weekly deals</span></div>
                     </div>
-
-
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
+        </section>
 
-            <div class="banner">
-                <a href="#"><img src="img/banner_home3.png" alt=""></a>
-            </div>
-        </div>
-    </div>
-    <!-- End mySwiper -->
-
-    <div class="banners_4">
-        <div class="container">
-
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_1.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Top Categories</h2>
+                    <p>Find the right accessory in seconds.</p>
+                </div>
+                <div class="card-grid">
+                    <div class="category-card">
+                        <h3>Phone Cases</h3>
+                        <p>Shockproof, slim, and premium leather picks.</p>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
-            </div>
-
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_2.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                    <div class="category-card">
+                        <h3>Chargers & Cables</h3>
+                        <p>Fast charging with certified safety standards.</p>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
-            </div>
-
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_3.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                    <div class="category-card">
+                        <h3>Audio Gear</h3>
+                        <p>Wireless earbuds, speakers, and sound upgrades.</p>
                     </div>
-                    <h6>Shop Now</h6>
-                </div>
-            </div>
-
-            <div class="box">
-                <a href="#" class="link_btn"></a>
-
-                <img src="img/banner3_4.png" alt="">
-                <div class="text">
-                    <h5>Break Disc</h5>
-                    <h5>deals on this</h5>
-                    <div class="sale">
-                        <p>Up <br>To</p>
-                        <span>70%</span>
+                    <div class="category-card">
+                        <h3>Smart Wearables</h3>
+                        <p>Fitness bands, smart watches, and straps.</p>
                     </div>
-                    <h6>Shop Now</h6>
+                    <div class="category-card">
+                        <h3>Gaming Essentials</h3>
+                        <p>Controllers, headsets, and power solutions.</p>
+                    </div>
+                    <div class="category-card">
+                        <h3>Desk Setup</h3>
+                        <p>Stands, organizers, and productivity tools.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Hot Deals</h2>
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Accessory Products</h2>
+                    <p>Hand-picked items you can add to cart instantly.</p>
                 </div>
-
-                <div class="products swiper-wrapper" id="swiper_items_sale">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
+                <div class="page-products" id="accessories_products"></div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="banners_poto">
-        <div class="container">
-            <div class="banners_box banner_2_img">
-                <a href="#" class="box"><img src="img/banner_box4.jpg" alt=""></a>
-                <a href="#" class="box"><img src="img/banner_box5.jpg" alt=""></a>
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Season Picks</h2>
+                    <p>Accessories curated by our team.</p>
+                </div>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h3>Magnetic Power Banks</h3>
+                        <p>Stay charged on the go with sleek magnetic packs.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Premium Cable Kits</h3>
+                        <p>Durable cables with smart organization pouch.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Studio Headphones</h3>
+                        <p>High-fidelity sound for creators and gamers.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Electronics</h2>
+        <section class="section">
+            <div class="container split">
+                <div>
+                    <div class="section-title">
+                        <h2>Accessory Care Tips</h2>
+                    </div>
+                    <p>Keep your accessories looking new with simple routines. Store cables in soft pouches, clean wearables weekly, and avoid extreme heat when charging.</p>
+                    <p>Need personal recommendations? Our team can help you choose the right fit for your device.</p>
+                    <a href="contact.html" class="btn page-btn">Talk to Support</a>
                 </div>
-
-                <div class="products swiper-wrapper" id="swiper_tepols">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
+                <div class="image-card">Extend the life of your favorite accessories.</div>
             </div>
-        </div>
-    </div>
-
-
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Appliances</h2>
-                </div>
-
-                <div class="products swiper-wrapper" id="swiper_Appliances">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="banners_poto_two">
-        <div class="container">
-            <div class="banners_box banner_2_img">
-                <a href="#" class="box"><img src="img/banner_box1.jpg" alt=""></a>
-                <a href="#" class="box"><img src="img/banner_box2.jpg" alt=""></a>
-                <a href="#" class="box"><img src="img/banner_box3.jpg" alt=""></a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="slider_products slide">
-
-        <div class="container">
-
-            <div class="slide_product mySwiper">
-
-                <div class="top_slide">
-                    <h2><i class="fa-solid fa-tags"></i> Mobiles</h2>
-                </div>
-
-                <div class="products swiper-wrapper" id="swiper_mobiles">
-
-
-
-                </div>
-
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
-            </div>
-        </div>
-    </div>
-
-
-
-
+        </section>
+    </main>
 
     <footer>
         <div class="container">
@@ -436,25 +308,8 @@
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-<script src="js/items.js"></script>
-<script src="js/swiper.js"></script>
-<script src="js/main.js"></script>
-
+    <script src="js/main.js"></script>
+    <script src="js/accessories.js"></script>
 </body>
 
 </html>
