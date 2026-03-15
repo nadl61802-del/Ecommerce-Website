@@ -388,7 +388,7 @@ header .buttom-header nav .nav-links li.active a {
 
 .banners_4 .container .box {
     width: 24%;
-    background: url(../img/bg_banner3.jpg);
+    background: url(../img/bg_banner3.webp);
     background-size: cover;
     border-radius: 5px;
     display: flex;
