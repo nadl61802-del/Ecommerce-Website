@@ -23,7 +23,7 @@ fetch('products.json')
                 <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     <span class="sale_present">%${percent_disc}</span>
                     <div class="img_product">
-                        <a href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="tems1"></a>
+                        <a title="photo" aria-label="photo" href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="tems1"></a>
                     </div>
                     <div class="stars">
                         <i class="fa-solid fa-star"></i>
@@ -32,7 +32,7 @@ fetch('products.json')
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="name_product"><a href="#">${product.name}</a></p>
+                    <p class="name_product"><a title="title" aria-label="title" href="#">${product.name}</a></p>
                     <div class="price">
                         <p><span>$${product.price}</span></p>
                         <p class="old_price">$${product.old_price}</p>
@@ -62,7 +62,7 @@ fetch('products.json')
                 <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     ${old_price_div}
                     <div class="img_product">
-                        <a href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="temes2"></a>
+                        <a title="photo" aria-label="photo" href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="temes2"></a>
                     </div>
                     <div class="stars">
                         <i class="fa-solid fa-star"></i>
@@ -71,7 +71,7 @@ fetch('products.json')
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="name_product"><a href="#">${product.name}</a></p>
+                    <p class="name_product"><a title="title" aria-label="title" href="#">${product.name}</a></p>
                     <div class="price">
                         <p><span>$${product.price}</span></p>
                         ${old_price_pargrahp}
@@ -101,7 +101,7 @@ fetch('products.json')
                 <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     ${old_price_div}
                     <div class="img_product">
-                        <a href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="temes3"></a>
+                        <a title="photo" aria-label="photo" href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="temes3"></a>
                     </div>
                     <div class="stars">
                         <i class="fa-solid fa-star"></i>
@@ -110,7 +110,7 @@ fetch('products.json')
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="name_product"><a href="#">${product.name}</a></p>
+                    <p class="name_product"><a title="title" aria-label="title" href="#">${product.name}</a></p>
                     <div class="price">
                         <p><span>$${product.price}</span></p>
                         ${old_price_pargrahp}
@@ -140,7 +140,7 @@ fetch('products.json')
                 <div class="swiper-slide product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                     ${old_price_div}
                     <div class="img_product">
-                        <a href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="temes4"></a>
+                        <a title="photo" aria-label="photo" href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="140" alt="temes4"></a>
                     </div>
                     <div class="stars">
                         <i class="fa-solid fa-star"></i>
@@ -149,7 +149,7 @@ fetch('products.json')
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="name_product"><a href="#">${product.name}</a></p>
+                    <p class="name_product"><a title="title" aria-label="title" href="#">${product.name}</a></p>
                     <div class="price">
                         <p><span>$${product.price}</span></p>
                         ${old_price_pargrahp}
