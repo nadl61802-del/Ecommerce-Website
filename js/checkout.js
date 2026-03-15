@@ -44,7 +44,7 @@ function renderCheckoutSummary() {
         cart.forEach(item => {
             summaryItems.innerHTML += `
             <div class="summary-item" data-id="${item.id}">
-                <img src="${item.img}" alt="">
+                <img src="${item.img}" loading="lazy" class="img-fluid" width="100" height="100" alt="check javes">
                 <div class="summary-info">
                     <div class="title">${item.name}</div>
                     <div class="summary-controls">

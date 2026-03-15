@@ -30,7 +30,7 @@ fetch("products.json")
             <div class="product" data-category="${categoryAttr}" data-sale="${saleAttr}">
                 ${saleTag}
                 <div class="img_product">
-                    <a href="#"><img src="${product.img}" alt=""></a>
+                    <a href="#"><img src="${product.img}" loading="lazy" class="img-fluid" width="100" height="100" alt="accessies "></a>
                 </div>
                 <div class="stars">
                     <i class="fa-solid fa-star"></i>

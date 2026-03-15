@@ -69,7 +69,7 @@ function updateCart() {
 
         cartItemsContainer.innerHTML += `
         <div class="item_cart">
-                <img src="${item.img}" alt="">
+                <img src="${item.img}" loading="lazy" class="img-fluid" width="100" height="100" alt="logo mains">
                 <div class="content">
                     <h4>${item.name}</h4>
                     <p class="price_cart">$${item.price}</p>
