@@ -863,11 +863,11 @@ footer .buttom_footer .container .payment {
     justify-content: space-between;
 }
 
-.cart .top_cart h3 {
-    font-size: 18px;
+.cart .top_cart h2 {
+    font-size: 17px;
 }
 
-.cart .top_cart h3 span {
+.cart .top_cart h2 span {
     color: var(--color_heading);
 }
 
@@ -1081,8 +1081,8 @@ footer .buttom_footer .container .payment {
     border-bottom: 1px solid var(--border_color);
 }
 
-.mobile-menu__header h3 {
-    font-size: 18px;
+.mobile-menu__header h2 {
+    font-size: 17px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
