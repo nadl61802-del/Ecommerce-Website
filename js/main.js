@@ -10,36 +10,52 @@ function open_clise_cart() {
     cart.classList.toggle("active")
 }
 
-fetch('products.json')
-    .then(response => response.json())
-    .then(data => {
+let productsCatalog = Array.isArray(window.PRODUCTS_DATA) ? window.PRODUCTS_DATA : []
 
-        updateCart() // 
-
-        document.addEventListener("click", function (event) {
-
-            const button = event.target.closest(".btn_add_cart")
-
-            if (!button) return
-
-            const productId = button.dataset.id
-
-            const selcetedProduct = data.find(product => product.id == productId)
-
-            if (!selcetedProduct) return // 
-
-            addToCart(selcetedProduct)
-
-            const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
-
-            allMathingButtons.forEach(btn => {
-                btn.classList.add("active")
-                btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in Cart`
-            })
-
+if (typeof window.loadProducts === "function") {
+    window.loadProducts()
+        .then(data => {
+            if (Array.isArray(data) && data.length) {
+                productsCatalog = data
+            }
         })
+        .catch(error => {
+            console.error("Unable to initialize product catalog.", error)
+        })
+}
 
+updateCart()
+
+document.addEventListener("click", function (event) {
+
+    const button = event.target.closest(".btn_add_cart")
+
+    if (!button) return
+
+    const productId = button.dataset.id
+
+    const selcetedProduct = findProductById(productId)
+
+    if (!selcetedProduct) return
+
+    addToCart(selcetedProduct)
+
+    const allMathingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
+
+    allMathingButtons.forEach(btn => {
+        btn.classList.add("active")
+        btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in Cart`
     })
+
+})
+
+function findProductById(productId) {
+    const catalog = Array.isArray(productsCatalog) && productsCatalog.length
+        ? productsCatalog
+        : (Array.isArray(window.PRODUCTS_DATA) ? window.PRODUCTS_DATA : [])
+
+    return catalog.find(product => String(product.id) === String(productId))
+}
 
 function addToCart(product) {
 

@@ -1,5 +1,4 @@
-fetch("products.json")
-    .then(response => response.json())
+window.loadProducts()
     .then(data => {
         const container = document.getElementById("accessories_products")
         if (!container) return
@@ -56,5 +55,15 @@ fetch("products.json")
             `
         })
 
-        window.dispatchEvent(new Event("products:rendered"))
+        window.setTimeout(() => {
+            window.dispatchEvent(new Event("products:rendered"))
+        }, 0)
+    })
+    .catch(error => {
+        const container = document.getElementById("accessories_products")
+        if (container) {
+            container.innerHTML = `<div class="page-empty">Unable to load products right now.</div>`
+        }
+
+        console.error("Unable to render accessories products.", error)
     })

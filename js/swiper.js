@@ -17,6 +17,9 @@ var swiper = new Swiper(".slide-swp", {
 var swiper = new Swiper(".slide_product",{
     slidesPerView: 4,
     spaceBetween: 20,
+    observer: true,
+    observeParents: true,
+    watchOverflow: true,
 
     autoplay: {
         delay: 2500,

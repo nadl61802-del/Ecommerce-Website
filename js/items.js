@@ -1,9 +1,7 @@
 // items.js - الكود الكامل بعد الدمج
 
-fetch('products.json')
-    .then(response => response.json())
+window.loadProducts()
     .then(data => {
-        console.log(data);
         const cart = JSON.parse(localStorage.getItem('cart')) || []
         const cartIds = new Set(cart.map(item => String(item.id)))
         const swiper_items_sale = document.getElementById("swiper_items_sale")
@@ -166,6 +164,10 @@ fetch('products.json')
             }
         });
 
-        window.dispatchEvent(new Event("products:rendered"))
+        window.setTimeout(() => {
+            window.dispatchEvent(new Event("products:rendered"))
+        }, 0)
     })
-
+    .catch(error => {
+        console.error("Unable to render home page products.", error)
+    })

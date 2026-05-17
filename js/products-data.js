@@ -1,0 +1,218 @@
+(function () {
+    const fallbackProducts = [
+        {
+            id: 0,
+            img: "img/product/0.webp",
+            name: "SAMSUNG 55 Inch UHD 4K Smart TV With Receiver",
+            price: 3750,
+            catetory: "electronics"
+        },
+        {
+            id: 1,
+            img: "img/product/1.webp",
+            name: "Redmi 13C Dual SIM with 6GB RAM",
+            price: 2800,
+            catetory: "mobiles"
+        },
+        {
+            id: 2,
+            img: "img/product/2.webp",
+            name: "Dell Laptop Latitude 5530 Core i7-1255U 8GB SSD",
+            price: 4500,
+            catetory: "electronics"
+        },
+        {
+            id: 3,
+            img: "img/product/3.webp",
+            name: "Canon EOS RP Mirrorless Camera",
+            price: 5300,
+            catetory: "electronics"
+        },
+        {
+            id: 4,
+            img: "img/product/4.webp",
+            name: "OPPO A18 128GB 4GB Glowing Black",
+            price: 2500,
+            catetory: "mobiles"
+        },
+        {
+            id: 5,
+            img: "img/product/5.webp",
+            name: "Samsung 27-Inch G55C Odyssey QHD 4k",
+            price: 2480,
+            catetory: "electronics"
+        },
+        {
+            id: 6,
+            img: "img/product/6.webp",
+            name: "Iphone 6 max (, 8GB RAM, 128GB Storage)",
+            price: 15200,
+            old_price: 17500,
+            catetory: "mobiles"
+        },
+        {
+            id: 7,
+            img: "img/product/7.webp",
+            name: "HP Victus Gaming Laptop 8RAM SSD",
+            price: 3770,
+            catetory: "electronics"
+        },
+        {
+            id: 8,
+            img: "img/product/8.webp",
+            name: "Xiaomi Redmi 13C Dual SIM 8GB",
+            price: 3200,
+            catetory: "mobiles"
+        },
+        {
+            id: 9,
+            img: "img/product/9.webp",
+            name: "Handheld Barcode Scanner 1D/2D/QR Code",
+            price: 800,
+            old_price: 1100,
+            catetory: "electronics"
+        },
+        {
+            id: 10,
+            img: "img/product/10.webp",
+            name: "Large Venue building mapping Projector",
+            price: 3600,
+            catetory: "electronics"
+        },
+        {
+            id: 11,
+            img: "img/product/11.webp",
+            name: "Infinix Hot 40i (RAM: 4+4GB, 128GB)",
+            price: 5600,
+            old_price: 6300,
+            catetory: "mobiles"
+        },
+        {
+            id: 12,
+            img: "img/product/12.webp",
+            name: "HP DeskJet 2710 Printer, All-in-One",
+            price: 3370,
+            catetory: "electronics"
+        },
+        {
+            id: 13,
+            img: "img/product/13.webp",
+            name: "Fuzzy Logic Rice Cooker DIGITAL-JAR 1.8L 940W - HD4515/67",
+            price: 4190,
+            catetory: "appliances"
+        },
+        {
+            id: 14,
+            img: "img/product/14.webp",
+            name: "Sencor STS 5070SS Electric Toaster for Four Slices",
+            price: 3840,
+            catetory: "appliances"
+        },
+        {
+            id: 15,
+            img: "img/product/15.webp",
+            name: "Infinix Smart 6 Plus (Miracle Black)",
+            price: 2800,
+            old_price: 3500,
+            catetory: "mobiles"
+        },
+        {
+            id: 16,
+            img: "img/product/16.webp",
+            name: "Washing Machine 959 Series 8kg Senator Aqua SX, Silver",
+            price: 26000,
+            old_price: 35000,
+            catetory: "appliances"
+        },
+        {
+            id: 17,
+            img: "img/product/17.webp",
+            name: "HIKVISION PTZ Camera 4K Outdoo",
+            price: 1850,
+            catetory: "electronics"
+        },
+        {
+            id: 18,
+            img: "img/product/18.webp",
+            name: "Iphone 4 5G 64GB 6GB",
+            price: 8250,
+            catetory: "mobiles"
+        },
+        {
+            id: 19,
+            img: "img/product/19.webp",
+            name: "VIVAX kettle WH-175L with a capacity of 1.7 ",
+            price: 7400,
+            catetory: "appliances"
+        },
+        {
+            id: 20,
+            img: "img/product/20.webp",
+            name: "Kenstar Ester ABS Plastic 750W Mixer Grinder",
+            price: 5500,
+            old_price: 7300,
+            catetory: "appliances"
+        },
+        {
+            id: 21,
+            img: "img/product/21.webp",
+            name: "Multifunctional Food Processor",
+            price: 3500,
+            catetory: "appliances"
+        },
+        {
+            id: 22,
+            img: "img/product/22.webp",
+            name: "Zanussi Washing Machine 8 Kg 1200 RPM ",
+            price: 5800,
+            catetory: "appliances"
+        },
+        {
+            id: 23,
+            img: "img/product/23.webp",
+            name: "Sharp 42 Lt Electronic Oven Convection",
+            price: 4600,
+            catetory: "appliances"
+        },
+        {
+            id: 24,
+            img: "img/product/24.webp",
+            name: "Lenovo Monitor Legion R27fc-30 Gaming Curved",
+            price: 30000,
+            old_price: 42000,
+            catetory: "electronics"
+        }
+    ];
+
+    window.PRODUCTS_DATA = Array.isArray(window.PRODUCTS_DATA) && window.PRODUCTS_DATA.length
+        ? window.PRODUCTS_DATA
+        : fallbackProducts;
+
+    window.loadProducts = async function loadProducts() {
+        const fallback = Array.isArray(window.PRODUCTS_DATA) ? window.PRODUCTS_DATA : fallbackProducts;
+
+        if (window.location.protocol === "file:") {
+            return fallback;
+        }
+
+        try {
+            const response = await fetch("products.json", { cache: "no-store" });
+
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data) || !data.length) {
+                return fallback;
+            }
+
+            window.PRODUCTS_DATA = data;
+            return data;
+        } catch (error) {
+            console.warn("Unable to load products.json. Falling back to bundled product data.", error);
+            return fallback;
+        }
+    };
+})();
